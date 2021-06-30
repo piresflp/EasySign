@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class Dicio extends StatelessWidget {
+class Translator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container();

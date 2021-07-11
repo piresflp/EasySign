@@ -11,15 +11,17 @@ class Dictionary extends StatelessWidget {
       appBar: AppBar(
         title: Text("Salve romanhole"),
       ),
-      body: FutureBuilder<WordModel>(
-        future: _dictionaryController.fetchWordById(4),
+      body: FutureBuilder<List<WordModel>>(
+        future: _dictionaryController.fetchWordsByLetter('a'),
         builder: (context, snapshot) {
           var requestedWord = snapshot.data;
           if (requestedWord == null) return Text("Deu ruim");
 
-          return ListView.builder(itemBuilder: (context, index) {
-            return ListTile(title: Text(requestedWord.palavra));
-          });
+          return ListView.builder(
+              itemCount: requestedWord.length,
+              itemBuilder: (context, index) {
+                return ListTile(title: Text(requestedWord[index].palavra));
+              });
         },
       ),
     );

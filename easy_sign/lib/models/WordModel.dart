@@ -9,6 +9,8 @@ class WordModel {
   String exemploPortugues;
   String exemploLibras;
 
+  WordModel.empty();
+
   WordModel(
       this.id,
       this.letraInicial,

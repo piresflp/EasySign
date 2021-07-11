@@ -8,21 +8,15 @@ class WordRepository implements IWordRepository {
   Client client = Client();
 
   @override
-  Future<List<WordModel>> getWordById(int id) async {
+  Future<WordModel> getWordById(int id) async {
     try {
       final response = await client.get(
           Uri.parse("http://192.168.0.150:3333/palavras/" + id.toString()));
 
       if (response.statusCode == 200) {
-        List<WordModel> words = [];
         WordModel word = new WordModel.fromJson(json.decode(response.body));
-        words.add(word);
-        /*for (dynamic item in list) {
-          WordModel word = new WordModel();
-          words.add(word);
-        }*/
 
-        return words;
+        return word;
       } else
         throw Exception(response.statusCode);
     } on Exception catch (e) {
@@ -37,7 +31,7 @@ class WordRepository implements IWordRepository {
           .get(Uri.parse("http://192.168.0.150:3333/palavras"));
 
       if (response.statusCode == 200) {
-        var list = json.decode(response.body);
+        var list = json.decode(response.body) as List<dynamic>;
         List<WordModel> words = [];
         WordModel word = new WordModel.fromJson(json.decode(response.body));
         words.add(word);

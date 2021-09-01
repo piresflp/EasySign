@@ -1,23 +1,37 @@
 class Category {
   final String name;
-  final int numOfCourses;
-  final String image;
 
-  Category(this.name, this.numOfCourses, this.image);
+  Category(this.name);
 }
 
-var categoriesData = [
-  {"name": "Marketing", 'courses': 17, 'image': "assets/images/marketing.png"},
-  {"name": "UX Design", 'courses': 25, 'image': "assets/images/ux_design.png"},
-  {
-    "name": "Photography",
-    'courses': 13,
-    'image': "assets/images/photography.png"
-  },
-  {"name": "Business", 'courses': 17, 'image': "assets/images/business.png"},
-];
+List<Category> categories =
+    categoriesData.map((item) => Category(item['name'])).toList();
 
-List<Category> categories = [
-  Category("Marketing", 17, "assets/images/marketing.png"),
-  Category("UX Design", 25, "assets/images/ux_design.png")
+var categoriesData = [
+  {"name": "A"},
+  {"name": "B"},
+  {"name": "C"},
+  {"name": "D"},
+  {"name": "E"},
+  {"name": "F"},
+  {"name": "G"},
+  {"name": "H"},
+  {"name": "I"},
+  {"name": "J"},
+  {"name": "K"},
+  {"name": "L"},
+  {"name": "M"},
+  {"name": "N"},
+  {"name": "O"},
+  {"name": "P"},
+  {"name": "Q"},
+  {"name": "R"},
+  {"name": "S"},
+  {"name": "T"},
+  {"name": "U"},
+  {"name": "V"},
+  {"name": "W"},
+  {"name": "X"},
+  {"name": "Y"},
+  {"name": "Z"}
 ];

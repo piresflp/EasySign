@@ -5,7 +5,7 @@ import 'package:easy_sign/constants.dart';
 import 'package:easy_sign/model/category.dart';
 import 'package:easy_sign/Screens/Words/words.dart';
 
-class Dicio extends StatelessWidget {
+class Translator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

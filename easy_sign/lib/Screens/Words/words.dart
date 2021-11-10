@@ -1,42 +1,78 @@
+import 'package:easy_sign/Screens/Word/word.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:easy_sign/constants.dart';
+import 'package:easy_sign/model/category.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:easy_sign/model/wordsModel.dart';
-import 'package:easy_sign/components/word_list.dart';
-import 'package:easy_sign/Screens/Word/word.dart';
 
 class Words extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: EdgeInsets.only(left: 0, top: 10, right: 10),
-        child: ListView(
-          children: [
-            ListView.builder(
-              shrinkWrap: true,
-              physics: ScrollPhysics(),
-              itemCount: words.length,
-              itemBuilder: (context, index) => WordList(
-                word: words[index],
-                onPress: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Word(
-                        word: words[index],
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.black,
+            iconSize: 35,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
         ),
-        //SizedBox(height: 30),
-        //Text("Escolha uma categoria de palavras", style: kHeadingextStyle),
-        /*Container(
+        backgroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 100,
+        title: Text(
+          "Voltar",
+          style: GoogleFonts.getFont('Roboto',
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 32),
+        ),
+      ),
+      body: Padding(
+        padding: EdgeInsets.only(left: 35, top: 10, right: 35),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+                padding: const EdgeInsets.only(bottom: 25.0),
+                child: Container(
+                  //padding: EdgeInsets.all(20),
+                  height: 60,
+                  width: 60,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                          color: Color.fromARGB(255, 48, 128, 224), width: 5)
+                      /*image: DecorationImage(
+                        image: AssetImage(categories[index].image),
+                        fit: BoxFit.fill,
+                      ),*/
+                      ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "A",
+                        style: GoogleFonts.getFont('Poppins',
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
+                      ),
+                      /*Text(
+                          '${categories[index].numOfCourses} Palavras',
+                          style: TextStyle(
+                            color: kTextColor.withOpacity(.5),
+                          ),
+                        )*/
+                    ],
+                  ),
+                )),
+            //SizedBox(height: 30),
+            //Text("Escolha uma categoria de palavras", style: kHeadingextStyle),
+            /*Container(
               margin: EdgeInsets.symmetric(vertical: 30),
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               height: 80,
@@ -60,13 +96,70 @@ class Words extends StatelessWidget {
                 ],
               ),
             ),*/
-        /*Row(
+            /*Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 //Text("Categorias", style: kTitleTextStyle),
               ],
             ),*/
-        //SizedBox(height: 30),
+            //SizedBox(height: 30),
+            Expanded(
+              child: StaggeredGridView.countBuilder(
+                //padding: EdgeInsets.all(0),
+                crossAxisCount: 2,
+                itemCount: words.length,
+                crossAxisSpacing: 14,
+                mainAxisSpacing: 14,
+                itemBuilder: (context, index) {
+                  return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Word(
+                              word: words[index],
+                            ),
+                          ),
+                        );
+                      },
+                      child: new Container(
+                        //padding: EdgeInsets.all(20),
+                        height: 89,
+                        width: 164.4,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color.fromARGB(255, 48, 128, 224),
+                          /*image: DecorationImage(
+                        image: AssetImage(categories[index].image),
+                        fit: BoxFit.fill,
+                      ),*/
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              words[index].name,
+                              style: GoogleFonts.getFont('Poppins',
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            /*Text(
+                          '${categories[index].numOfCourses} Palavras',
+                          style: TextStyle(
+                            color: kTextColor.withOpacity(.5),
+                          ),
+                        )*/
+                          ],
+                        ),
+                      ));
+                },
+                staggeredTileBuilder: (index) => StaggeredTile.fit(1),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -75,5 +168,13 @@ class Words extends StatelessWidget {
   State<StatefulWidget> createState() {
     // TODO: implement createState
     throw UnimplementedError();
-  }*/
+  }
+  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Word(
+                        word: words[index],
+                      ),
+                    ),
+                  );*/
 }

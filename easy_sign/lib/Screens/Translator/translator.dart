@@ -1,19 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:easy_sign/constants.dart';
 import 'package:easy_sign/model/category.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:easy_sign/Screens/Words/words.dart';
 
 class Translator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: Padding(
+          padding: const EdgeInsets.all(18.0),
+          child: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            color: Colors.black,
+            iconSize: 35,
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+        ),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        toolbarHeight: 100,
+        title: Text(
+          "Voltar",
+          style: GoogleFonts.getFont('Roboto',
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 32),
+        ),
+      ),
       body: Padding(
-        padding: EdgeInsets.only(left: 20, top: 10, right: 20),
+        padding: EdgeInsets.only(left: 35, top: 10, right: 35),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15.0),
+              child: Text(
+                "Escolha uma letra",
+                style: GoogleFonts.getFont('Roboto',
+                    fontSize: 28, fontWeight: FontWeight.bold),
+              ),
+            ),
             //SizedBox(height: 30),
             //Text("Escolha uma categoria de palavras", style: kHeadingextStyle),
             /*Container(
@@ -49,11 +77,11 @@ class Translator extends StatelessWidget {
             //SizedBox(height: 30),
             Expanded(
               child: StaggeredGridView.countBuilder(
-                padding: EdgeInsets.all(0),
-                crossAxisCount: 2,
+                //padding: EdgeInsets.all(0),
+                crossAxisCount: 5,
                 itemCount: categories.length,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+                crossAxisSpacing: 14,
+                mainAxisSpacing: 14,
                 itemBuilder: (context, index) {
                   return InkWell(
                       onTap: () {
@@ -67,11 +95,12 @@ class Translator extends StatelessWidget {
                         );
                       },
                       child: new Container(
-                        padding: EdgeInsets.all(20),
-                        height: index.isEven ? 200 : 240,
+                        //padding: EdgeInsets.all(20),
+                        height: 50,
+                        width: 50,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(16),
-                          color: kBlueColor,
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color.fromARGB(255, 48, 128, 224),
                           /*image: DecorationImage(
                         image: AssetImage(categories[index].image),
                         fit: BoxFit.fill,
@@ -83,8 +112,10 @@ class Translator extends StatelessWidget {
                           children: <Widget>[
                             Text(
                               categories[index].name,
-                              style: TextStyle(
-                                  fontSize: 50, fontWeight: FontWeight.bold),
+                              style: GoogleFonts.getFont('Poppins',
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
                             ),
                             /*Text(
                           '${categories[index].numOfCourses} Palavras',
@@ -109,5 +140,13 @@ class Translator extends StatelessWidget {
   State<StatefulWidget> createState() {
     // TODO: implement createState
     throw UnimplementedError();
-  }*/
+  }
+  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Word(
+                        word: words[index],
+                      ),
+                    ),
+                  );*/
 }

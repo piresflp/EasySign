@@ -1,11 +1,10 @@
-import 'package:easy_sign/model/wordsModel.dart';
+import 'package:easy_sign/models/WordModel.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class Word extends StatefulWidget {
-  final WordsModel word;
-
-  const Word({Key key, this.word}) : super(key: key);
+  WordModel word;
+  Word({Key key, this.word}) : super(key: key);
   @override
   _WordState createState() => _WordState();
 }
@@ -29,7 +28,7 @@ class _WordState extends State<Word> {
                   child: Column(
                     children: [
                       Text("Exemplo da palavra numa frase em português"),
-                      Text("Olá, tudo bem?"),
+                      Text(widget.word.exemploPortugues),
                     ],
                   ),
                 ),
@@ -37,8 +36,11 @@ class _WordState extends State<Word> {
                   padding: EdgeInsets.only(top: 40),
                   child: Column(
                     children: [
-                      Text("Exemplo da palavra numa frase em LIBRAS"),
-                      Text("SOL FORTEmuito OLHO OFUSCAR.")
+                      Text("•     Exemplo da palavra numa frase em LIBRAS"),
+                      Text(widget.word.exemploLibras),
+                      Text(widget.word.genero),
+                      Text(widget.word.origem),
+                      Text(widget.word.palavra)
                     ],
                   ),
                 )

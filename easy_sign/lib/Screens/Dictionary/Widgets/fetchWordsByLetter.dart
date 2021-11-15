@@ -1,15 +1,21 @@
+import 'dart:developer';
+import 'dart:ui';
 import 'package:easy_sign/controllers/DictionaryController.dart';
 import 'package:easy_sign/models/WordModel.dart';
 import 'package:flutter/material.dart';
 
-Widget fetchWordsByLetter(String letter) {
+Future<List<WordModel>> fetchWordsByLetter(String letter) {
   final DictionaryController _dictionaryController = DictionaryController();
+  Future<List<WordModel>> lista;
 
-  return FutureBuilder<List<WordModel>>(
+  lista = _dictionaryController.fetchWordsByLetter(letter);
+  return lista;
+  /*return FutureBuilder<List<WordModel>>(
     future: _dictionaryController.fetchWordsByLetter(letter),
     builder: (context, snapshot) {
       var words = snapshot.data;
-      if (words == null) return Text("Deu ruim");
+      log(snapshot.hasData.toString());
+      if (words == null) return Center(child: CircularProgressIndicator());
 
       return ListView.builder(
           itemCount: words.length,
@@ -17,5 +23,5 @@ Widget fetchWordsByLetter(String letter) {
             return ListTile(title: Text(words[index].palavra));
           });
     },
-  );
+  );*/
 }

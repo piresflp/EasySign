@@ -23,12 +23,13 @@ class _WordState extends State<Word> {
   void initState() {
     super.initState();
     //log(_videoPlayerController.toString());
-    _videoPlayerController = VideoPlayerController.network(
-        "https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_480_1_5MG.mp4")
-      ..initialize().then((_) {
-        setState(() {});
-        _videoPlayerController.play();
-      });
+    _videoPlayerController =
+        VideoPlayerController.network(widget.word.enderecoGif)
+          ..setLooping(true)
+          ..initialize().then((_) {
+            setState(() {});
+            _videoPlayerController.play();
+          });
     log(_videoPlayerController.toString());
   }
 
@@ -42,98 +43,108 @@ class _WordState extends State<Word> {
   Widget build(BuildContext context) {
     //log(controller.toString());
     return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(18.0),
-          child: IconButton(
-            icon: Icon(Icons.arrow_back_ios),
-            color: Colors.black,
-            iconSize: 35,
-            onPressed: () {
-              Navigator.pop(context);
-            },
+        appBar: AppBar(
+          leading: Padding(
+            padding: const EdgeInsets.all(18.0),
+            child: IconButton(
+              icon: Icon(Icons.arrow_back_ios),
+              color: Colors.black,
+              iconSize: 35,
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+          ),
+          backgroundColor: Colors.white,
+          elevation: 0,
+          toolbarHeight: 100,
+          title: Text(
+            "Voltar",
+            style: GoogleFonts.getFont('Roboto',
+                color: Colors.black, fontWeight: FontWeight.bold, fontSize: 32),
           ),
         ),
-        backgroundColor: Colors.white,
-        elevation: 0,
-        toolbarHeight: 100,
-        title: Text(
-          "Voltar",
-          style: GoogleFonts.getFont('Roboto',
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 32),
-        ),
-      ),
-      body: SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Padding(
-        padding: EdgeInsets.only(top: 20, bottom: 20),
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: <Widget>[
-              AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: Container(
-                      child: (_videoPlayerController.value.isInitialized
-                          ? VideoPlayer(_videoPlayerController)
-                          : Container()))),
-              Text(widget.word.palavra,
+            padding: EdgeInsets.only(top: 20, bottom: 20, left: 40, right: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                AspectRatio(
+                    aspectRatio: 16 / 9,
+                    child: Container(
+                        child: (_videoPlayerController.value.isInitialized
+                            ? VideoPlayer(_videoPlayerController)
+                            : Container()))),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: Text(widget.word.palavra,
+                      style: GoogleFonts.getFont('Roboto',
+                          color: Colors.black,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold)),
+                ),
+                Text(
+                  widget.word.genero,
                   style: GoogleFonts.getFont('Roboto',
-                      color: Colors.black,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold)),
-              Text(
-                widget.word.genero,
-                style: GoogleFonts.getFont('Roboto',
-                    fontWeight: FontWeight.w300,
-                    fontStyle: FontStyle.italic,
-                    fontSize: 20),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 40),
-                child: Column(
-                  children: [
-                    Text(
-                      "•     Exemplo da palavra numa frase em português",
-                      style: GoogleFonts.getFont('Roboto',
-                          color: Color.fromARGB(255, 48, 128, 224),
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      widget.word.exemploPortugues,
-                      style: GoogleFonts.getFont('Roboto',
-                          color: Colors.black,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.italic,
+                      fontSize: 24,
+                      color: Color.fromARGB(255, 90, 94, 98)),
                 ),
-              ),
-              Container(
-                padding: EdgeInsets.only(top: 40),
-                child: Column(
-                  children: [
-                    Text(
-                      "•     Exemplo da palavra numa frase em LIBRAS",
-                      style: GoogleFonts.getFont('Roboto',
-                          color: Color.fromARGB(255, 48, 128, 224),
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      "\"" + widget.word.exemploLibras + "\"",
-                      style: GoogleFonts.getFont('Roboto',
-                          color: Colors.black,
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ],
+                Container(
+                  padding: EdgeInsets.only(top: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "•  Exemplo em português:",
+                        style: GoogleFonts.getFont('Roboto',
+                            color: Color.fromARGB(255, 48, 128, 224),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10, left: 20),
+                        child: Text(
+                          "\"" + widget.word.exemploPortugues + "\"",
+                          style: GoogleFonts.getFont('Roboto',
+                              color: Colors.black,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              )
-            ],
+                Container(
+                  padding: EdgeInsets.only(top: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "•  Exemplo em LIBRAS:",
+                        style: GoogleFonts.getFont('Roboto',
+                            color: Color.fromARGB(255, 48, 128, 224),
+                            fontSize: 24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 10, left: 20),
+                        child: Text(
+                          "\"" + widget.word.exemploLibras + "\"",
+                          style: GoogleFonts.getFont('Roboto',
+                              color: Colors.black,
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
           ),
-        ),
-      )),
-    );
+        ));
   }
 }

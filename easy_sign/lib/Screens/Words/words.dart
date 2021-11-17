@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:easy_sign/Screens/Word/word.dart';
 import 'package:easy_sign/models/WordModel.dart';
 import 'package:flutter/material.dart';
@@ -75,9 +77,11 @@ class _WordsState extends State<Words> {
               future:
                   _dictionaryController.fetchWordsByLetter(widget.letraInicial),
               builder: (context, snapshot) {
+                log(widget.letraInicial);
                 if (!snapshot.hasData)
                   return Center(child: CircularProgressIndicator());
                 var words = snapshot.data;
+                log("ola");
                 return StaggeredGridView.countBuilder(
                   //padding: EdgeInsets.all(0),
                   crossAxisCount: 2,

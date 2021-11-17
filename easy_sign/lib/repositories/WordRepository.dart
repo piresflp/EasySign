@@ -11,13 +11,14 @@ class WordRepository implements IWordRepository {
   Future<List<WordModel>> getWordsByLetter(String letter) async {
     try {
       final response =
-          await client.post(Uri.parse("http://10.0.2.2:3333/palavras"),
+          await client.post(Uri.parse("http://192.168.15.17:3333/palavras"),
               headers: <String, String>{
                 'Content-Type': 'application/json; charset=UTF-8',
               },
               body: jsonEncode(<String, String>{
                 'letra_inicial': letter,
               }));
+      log("entrou");
 
       if (response.statusCode == 200) {
         var list = json.decode(response.body) as List<dynamic>;

@@ -21,13 +21,13 @@ class Body extends StatelessWidget {
     return Scaffold(
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 40.0),
+          padding: const EdgeInsets.only(top: 80.0),
           child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "BEM VINDO AO EASY SIGN",
+                  "BEM VINDO AO EASY SIGN!",
                   style: TextStyle(fontWeight: FontWeight.bold),
                 ),
                 SizedBox(height: size.height * 0.05),
